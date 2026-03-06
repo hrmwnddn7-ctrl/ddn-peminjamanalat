@@ -12,16 +12,8 @@
             "destination": "/assets/$1"
         },
         {
-            "source": "/",
-            "destination": "/api/index.php"
-        },
-        {
-            "source": "/(admin|peminjam|petugas)/(.*)",
-            "destination": "/api/$1/$2"
-        },
-        {
-            "source": "/(login|logout)",
-            "destination": "/api/$1.php"
+            "source": "/(.*)",
+            "destination": "/api/$1"
         }
     ]
 }
