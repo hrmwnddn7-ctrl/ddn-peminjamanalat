@@ -1,0 +1,9 @@
+.git
+.vscode
+.idea
+db_peminjaman.sql
+README.md
+vendor/
+node_modules/
+xampp/
+*.log

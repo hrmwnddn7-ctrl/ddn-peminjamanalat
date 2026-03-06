@@ -1,0 +1,8 @@
+/vendor/
+/node_modules/
+.env
+db_peminjaman.sql
+*.log
+.vscode/
+.idea/
+xampp/
