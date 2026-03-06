@@ -2,25 +2,21 @@
     "version": 2,
     "cleanUrls": true,
     "functions": {
-        "api/**/*.php": {
+        "api/index.php": {
             "runtime": "vercel-php@0.7.1"
         }
     },
     "rewrites": [
         {
-            "source": "/(config|includes)/(.*)",
-            "destination": "/403"
+            "source": "/assets/(.*)",
+            "destination": "/assets/$1"
         },
         {
             "source": "/(admin|peminjam|petugas)/(.*)",
-            "destination": "/api/$1/$2"
+            "destination": "/api/index.php"
         },
         {
-            "source": "/(login|logout)",
-            "destination": "/api/$1.php"
-        },
-        {
-            "source": "/",
+            "source": "/(.*)",
             "destination": "/api/index.php"
         }
     ]
