@@ -1,40 +1,50 @@
 <?php
 /**
  * Vercel PHP Gateway
- * Menangani semua rute aplikasi secara dinamis
  */
 
 $uri = $_SERVER['REQUEST_URI'];
 $path = parse_url($uri, PHP_URL_PATH);
-
-// Bersihkan path
 $path = ltrim($path, '/');
-if ($path === '') $path = 'index.php';
 
-// Jika rute adalah folder (misal: /admin), arahkan ke index.php di folder tersebut
-if ($path !== 'index.php' && $path !== '' && is_dir(__DIR__ . '/' . $path)) {
-    $path = rtrim($path, '/') . '/index.php';
+// Handle Root / Index
+if ($path === '' || $path === 'index.php') {
+    header("Location: /login");
+    exit;
 }
 
-// Jika request tidak punya .php, tambahkan (untuk clean URLs)
-$targetFile = __DIR__ . '/' . $path;
-if (!file_exists($targetFile) && file_exists($targetFile . '.php')) {
-    $targetFile .= '.php';
-    $path .= '.php';
-}
-
-// Security: Larang akses ke config/includes dari luar
+// Security: No config/includes access
 if (preg_match('/^(config|includes)\//', $path)) {
     http_response_code(403);
     die('Akses Dilarang');
 }
 
+// Determine target file
+$targetFile = __DIR__ . '/' . $path;
+
+// Check if it's a directory
+if (is_dir($targetFile)) {
+    $targetFile = rtrim($targetFile, '/') . '/index.php';
+}
+
+// Try appending .php if not exists
+if (!file_exists($targetFile) && file_exists($targetFile . '.php')) {
+    $targetFile .= '.php';
+}
+
 if (file_exists($targetFile) && is_file($targetFile)) {
-    // Jalankan file yang dituju
+    // IMPORTANT: Avoid recursion if by any chance it still points to this file
+    if (realpath($targetFile) === realpath(__FILE__)) {
+        header("Location: /login");
+        exit;
+    }
+    
+    // Set CWD for relative paths in included files
+    chdir(dirname($targetFile));
     require $targetFile;
 } else {
-    // Jika tetap tidak ketemu, coba cari di root (fall-through)
+    // Fallback or 404
     http_response_code(404);
-    echo "<h1>404 - Halaman Tidak Ditemukan</h1>";
-    echo "<p>Path: /api/" . htmlspecialchars($path) . "</p>";
+    echo "<h1>404 Not Found</h1>";
+    echo "<p>Tidak dapat menemukan: " . htmlspecialchars($path) . "</p>";
 }
