@@ -36,7 +36,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <span class="nav-link text-white">Halo, <?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?> (<?php echo ucfirst($_SESSION['role']); ?>)</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-danger btn-sm text-white px-3 ms-2" href="../logout.php">Logout</a>
+                <a class="nav-link btn btn-danger btn-sm text-white px-3 ms-2" href="/logout">Logout</a>
             </li>
         <?php else: ?>
             <li class="nav-item">
