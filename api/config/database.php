@@ -14,11 +14,9 @@ if (!$conn) {
 
 /**
  * AUTO SETUP: Buat tabel jika belum ada
- * Ini sangat membantu saat pertama kali deploy ke Vercel/Aiven
  */
 $check_table = mysqli_query($conn, "SHOW TABLES LIKE 'users'");
-if (mysqli_num_rows($check_table) == 0) {
-    // Jalankan query pembuatan tabel
+if ($check_table && mysqli_num_rows($check_table) == 0) {
     $queries = [
         "CREATE TABLE IF NOT EXISTS users (
             id_user INT AUTO_INCREMENT PRIMARY KEY,
@@ -64,8 +62,3 @@ if (mysqli_num_rows($check_table) == 0) {
         mysqli_query($conn, $q);
     }
 }
-// Tidak menggunakan ?> untuk menghindari whitespace yang menyebabkan error 'headers already sent'
-
-
-
-

@@ -2,8 +2,10 @@
 /**
  * Vercel PHP Gateway
  */
+ob_start();
 
 $uri = $_SERVER['REQUEST_URI'];
+
 $path = parse_url($uri, PHP_URL_PATH);
 $path = ltrim($path, '/');
 
