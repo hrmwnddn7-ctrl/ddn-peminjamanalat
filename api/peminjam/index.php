@@ -47,7 +47,7 @@ include '../includes/header.php';
             <?php while($row = mysqli_fetch_assoc($items)): ?>
             <div class="col">
                 <div class="card h-100">
-                    <img src="../assets/img/<?php echo $row['gambar']; ?>" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
+                    <img src="/assets/img/<?php echo $row['gambar']; ?>" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row['nama_alat']; ?></h5>
                         <p class="card-text text-muted"><?php echo $row['nama_kategori']; ?></p>

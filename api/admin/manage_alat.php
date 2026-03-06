@@ -17,9 +17,17 @@ if (isset($_POST['add'])) {
     $stok = $_POST['stok'];
     
     // Simple Image Upload
+    // Image Upload Logic
     $gambar = 'default.jpg';
     if(isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0){
-        $target_dir = "../assets/img/";
+        // Gunakan path absolut dari project root untuk upload
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/img/";
+        
+        // Pastikan folder ada
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
+
         $gambar = time() . "_" . basename($_FILES["gambar"]["name"]);
         move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_dir . $gambar);
     }
@@ -111,7 +119,7 @@ include '../includes/header.php';
             <tbody>
                 <?php while($row = mysqli_fetch_assoc($alat)): ?>
                 <tr>
-                    <td><img src="../assets/img/<?php echo $row['gambar']; ?>" width="50" alt="img"></td>
+                    <td><img src="/assets/img/<?php echo $row['gambar']; ?>" width="50" class="img-thumbnail" alt="img"></td>
                     <td><?php echo $row['nama_alat']; ?></td>
                     <td><?php echo $row['nama_kategori']; ?></td>
                     <td><?php echo $row['stok']; ?></td>
