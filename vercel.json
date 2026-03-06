@@ -2,7 +2,7 @@
     "version": 2,
     "cleanUrls": true,
     "functions": {
-        "**/*.php": {
+        "api/**/*.php": {
             "runtime": "vercel-php@0.7.1"
         }
     },
@@ -12,8 +12,16 @@
             "destination": "/assets/$1"
         },
         {
-            "source": "/((?!assets|api).*)",
+            "source": "/",
             "destination": "/api/index.php"
+        },
+        {
+            "source": "/(admin|peminjam|petugas)/(.*)",
+            "destination": "/api/$1/$2"
+        },
+        {
+            "source": "/(login|logout)",
+            "destination": "/api/$1.php"
         }
     ]
 }
