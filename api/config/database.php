@@ -63,12 +63,9 @@ if (mysqli_num_rows($check_table) == 0) {
     foreach ($queries as $q) {
         mysqli_query($conn, $q);
     }
-} else {
-    // Pastikan password admin selalu benar ke 123456 jika tabel sudah ada sebelumnya
-    $pass_hash = '$2y$10$L0A.bcTOIp2/6MTLYEkTxuLi5A.hd9myfSKYo7/Lj7Ok8MWBbeIdG';
-    mysqli_query($conn, "UPDATE users SET password = '$pass_hash' WHERE username = 'admin'");
 }
-?>
+// Tidak menggunakan ?> untuk menghindari whitespace yang menyebabkan error 'headers already sent'
+
 
 
 

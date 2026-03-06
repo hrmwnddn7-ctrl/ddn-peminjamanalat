@@ -3,7 +3,7 @@ session_start();
 include '../config/database.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
-    header("Location: ../login.php");
+    header("Location: /login");
     exit;
 }
 
@@ -24,7 +24,7 @@ include '../includes/header.php';
             <a href="manage_alat.php" class="list-group-item list-group-item-action">Data Alat</a>
             <a href="manage_users.php" class="list-group-item list-group-item-action">Data User</a>
             <a href="manage_peminjaman.php" class="list-group-item list-group-item-action">Data Peminjaman</a>
-            <a href="../logout.php" class="list-group-item list-group-item-action text-danger">Logout</a>
+            <a href="/logout" class="list-group-item list-group-item-action text-danger">Logout</a>
         </div>
     </div>
     <div class="col-md-9">
