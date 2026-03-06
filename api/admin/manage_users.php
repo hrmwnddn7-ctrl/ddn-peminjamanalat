@@ -3,7 +3,7 @@ session_start();
 include '../config/database.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
-    header("Location: ../login.php");
+    header("Location: /login");
     exit;
 }
 
@@ -106,10 +106,11 @@ include '../includes/header.php';
                     <td><?php echo $row['nama_lengkap']; ?></td>
                     <td><span class="badge bg-secondary"><?php echo $row['role']; ?></span></td>
                     <td>
+                        <a href="edit_user.php?id=<?php echo $row['id_user']; ?>" class="btn btn-warning btn-sm">Edit</a>
                         <?php if($row['id_user'] != $_SESSION['user_id']): ?>
                         <a href="?delete=<?php echo $row['id_user']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</a>
                         <?php else: ?>
-                            <span class="text-muted">Current</span>
+                            <span class="text-muted small">Current</span>
                         <?php endif; ?>
                     </td>
                 </tr>
