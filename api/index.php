@@ -15,10 +15,16 @@ if ($path === '' || $path === '/') {
     $path = 'index.php';
 }
 
+// Check if it's a directory (and index.php exists there)
+if (is_dir(__DIR__ . '/../' . $path)) {
+    $path = rtrim($path, '/') . '/index.php';
+}
+
 // In some cases, clean URLs might not have .php extension
 if (!file_exists(__DIR__ . '/../' . $path) && file_exists(__DIR__ . '/../' . $path . '.php')) {
     $path .= '.php';
 }
+
 
 // Security: Prevent direct access to config/includes via here
 if (preg_match('/^(config|includes)\//', $path)) {
