@@ -74,10 +74,11 @@ if (mysqli_num_rows($check_cats) == 0) {
 $check_alat = mysqli_query($conn, "SELECT id_alat FROM alat LIMIT 1");
 if (mysqli_num_rows($check_alat) == 0) {
     mysqli_query($conn, "INSERT INTO alat (id_kategori, nama_alat, deskripsi, stok, gambar) VALUES 
-        (1, 'Laptop ASUS ROG', 'Laptop gaming spek tinggi', 5, 'default.jpg'),
+        (1, 'Laptop ASUS ROG', 'Laptop gaming spek tinggi', 5, 'laptop_rog.png'),
         (1, 'Proyektor Epson', 'Proyektor HD untuk presentasi', 2, 'default.jpg'),
         (2, 'Tang Kombinasi', 'Alat pertukangan umum', 10, 'default.jpg'),
         (3, 'Kamera Canon EOS', 'Kamera DSLR 24MP', 3, 'default.jpg')");
 }
+
 
 

@@ -124,8 +124,10 @@ include '../includes/header.php';
                     <td><?php echo $row['nama_kategori']; ?></td>
                     <td><?php echo $row['stok']; ?></td>
                     <td>
+                        <a href="edit_alat.php?id=<?php echo $row['id_alat']; ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="?delete=<?php echo $row['id_alat']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</a>
                     </td>
+
                 </tr>
                 <?php endwhile; ?>
             </tbody>
