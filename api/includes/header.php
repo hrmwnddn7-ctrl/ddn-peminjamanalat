@@ -11,7 +11,7 @@
     <style>
         body { background-color: #f8f9fa; }
         .sidebar { min-height: 100vh; background-color: #343a40; color: white; }
-        .sidebar a { color: white; text-decoration: none; display: block; padding: 10px 15px; }
+        .sidebar a { color: white; display: block; padding: 10px 15px; }
         .sidebar a:hover { background-color: #495057; }
         .content { padding: 20px; }
     </style>
@@ -40,7 +40,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </li>
         <?php else: ?>
             <li class="nav-item">
-                <a class="nav-link" href="login.php">Login</a>
+                <a class="nav-link" href="/login">Login</a>
             </li>
         <?php endif; ?>
       </ul>

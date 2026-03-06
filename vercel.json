@@ -6,62 +6,14 @@
             "runtime": "vercel-php@0.7.1"
         }
     },
-    "rewrites": [
+    "routes": [
         {
-            "source": "/assets/(.*)",
-            "destination": "/assets/$1"
+            "src": "/assets/(.*)",
+            "dest": "/assets/$1"
         },
         {
-            "source": "/login",
-            "destination": "/api/login.php"
-        },
-        {
-            "source": "/logout",
-            "destination": "/api/logout.php"
-        },
-        {
-            "source": "/admin",
-            "destination": "/api/admin/index.php"
-        },
-        {
-            "source": "/admin/",
-            "destination": "/api/admin/index.php"
-        },
-        {
-            "source": "/admin/:file",
-            "destination": "/api/admin/:file.php"
-        },
-        {
-            "source": "/peminjam",
-            "destination": "/api/peminjam/index.php"
-        },
-        {
-            "source": "/peminjam/",
-            "destination": "/api/peminjam/index.php"
-        },
-        {
-            "source": "/peminjam/:file",
-            "destination": "/api/peminjam/:file.php"
-        },
-        {
-            "source": "/petugas",
-            "destination": "/api/petugas/index.php"
-        },
-        {
-            "source": "/petugas/",
-            "destination": "/api/petugas/index.php"
-        },
-        {
-            "source": "/petugas/:file",
-            "destination": "/api/petugas/:file.php"
-        },
-        {
-            "source": "/",
-            "destination": "/api/index.php"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/api/$1"
+            "src": "/(.*)",
+            "dest": "/api/index.php"
         }
     ]
 }
