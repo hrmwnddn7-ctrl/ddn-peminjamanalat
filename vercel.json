@@ -6,30 +6,91 @@
             "runtime": "vercel-php@0.7.1"
         }
     },
-    "rewrites": [
+    "routes": [
         {
-            "source": "/assets/(.*)",
-            "destination": "/assets/$1"
+            "src": "/assets/(.*)",
+            "dest": "/assets/$1"
         },
         {
-            "source": "/login",
-            "destination": "/api/login.php"
+            "src": "/admin",
+            "status": 308,
+            "headers": {
+                "Location": "/admin/"
+            }
         },
         {
-            "source": "/logout",
-            "destination": "/api/logout.php"
+            "src": "/admin/",
+            "dest": "/api/admin/index.php"
         },
         {
-            "source": "/(admin|peminjam|petugas)/(.*)",
-            "destination": "/api/$1/$2"
+            "src": "/admin/(.*).php",
+            "dest": "/api/admin/$1.php"
         },
         {
-            "source": "/(admin|peminjam|petugas)",
-            "destination": "/api/$1/index.php"
+            "src": "/admin/(.*)",
+            "dest": "/api/admin/$1.php"
         },
         {
-            "source": "/",
-            "destination": "/api/index.php"
+            "src": "/peminjam",
+            "status": 308,
+            "headers": {
+                "Location": "/peminjam/"
+            }
+        },
+        {
+            "src": "/peminjam/",
+            "dest": "/api/peminjam/index.php"
+        },
+        {
+            "src": "/peminjam/(.*).php",
+            "dest": "/api/peminjam/$1.php"
+        },
+        {
+            "src": "/peminjam/(.*)",
+            "dest": "/api/peminjam/$1.php"
+        },
+        {
+            "src": "/petugas",
+            "status": 308,
+            "headers": {
+                "Location": "/petugas/"
+            }
+        },
+        {
+            "src": "/petugas/",
+            "dest": "/api/petugas/index.php"
+        },
+        {
+            "src": "/petugas/(.*).php",
+            "dest": "/api/petugas/$1.php"
+        },
+        {
+            "src": "/petugas/(.*)",
+            "dest": "/api/petugas/$1.php"
+        },
+        {
+            "src": "/login.php",
+            "dest": "/api/login.php"
+        },
+        {
+            "src": "/login",
+            "dest": "/api/login.php"
+        },
+        {
+            "src": "/logout.php",
+            "dest": "/api/logout.php"
+        },
+        {
+            "src": "/logout",
+            "dest": "/api/logout.php"
+        },
+        {
+            "src": "/index.php",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/",
+            "dest": "/api/index.php"
         }
     ]
 }
