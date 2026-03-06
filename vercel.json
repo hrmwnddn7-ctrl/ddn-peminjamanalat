@@ -2,14 +2,26 @@
     "version": 2,
     "cleanUrls": true,
     "functions": {
-        "**/*.php": {
+        "api/**/*.php": {
             "runtime": "vercel-php@0.7.1"
         }
     },
-    "routes": [
+    "rewrites": [
         {
-            "src": "/(config|includes)/.*",
-            "status": 403
+            "source": "/(config|includes)/(.*)",
+            "destination": "/403"
+        },
+        {
+            "source": "/(admin|peminjam|petugas)/(.*)",
+            "destination": "/api/$1/$2"
+        },
+        {
+            "source": "/(login|logout)",
+            "destination": "/api/$1.php"
+        },
+        {
+            "source": "/",
+            "destination": "/api/index.php"
         }
     ]
 }
