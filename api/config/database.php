@@ -55,15 +55,20 @@ if (mysqli_num_rows($check_table) == 0) {
             FOREIGN KEY (id_alat) REFERENCES alat(id_alat) ON DELETE CASCADE
         )",
         "INSERT IGNORE INTO users (username, password, nama_lengkap, role) VALUES 
-        ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'admin'),
-        ('petugas', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Petugas 1', 'petugas'),
-        ('peminjam', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'User Peminjam', 'peminjam')"
+        ('admin', '$2y$10$L0A.bcTOIp2/6MTLYEkTxuLi5A.hd9myfSKYo7/Lj7Ok8MWBbeIdG', 'Administrator', 'admin'),
+        ('petugas', '$2y$10$L0A.bcTOIp2/6MTLYEkTxuLi5A.hd9myfSKYo7/Lj7Ok8MWBbeIdG', 'Petugas 1', 'petugas'),
+        ('peminjam', '$2y$10$L0A.bcTOIp2/6MTLYEkTxuLi5A.hd9myfSKYo7/Lj7Ok8MWBbeIdG', 'User Peminjam', 'peminjam')"
     ];
 
     foreach ($queries as $q) {
         mysqli_query($conn, $q);
     }
+} else {
+    // Pastikan password admin selalu benar ke 123456 jika tabel sudah ada sebelumnya
+    $pass_hash = '$2y$10$L0A.bcTOIp2/6MTLYEkTxuLi5A.hd9myfSKYo7/Lj7Ok8MWBbeIdG';
+    mysqli_query($conn, "UPDATE users SET password = '$pass_hash' WHERE username = 'admin'");
 }
 ?>
+
 
 
