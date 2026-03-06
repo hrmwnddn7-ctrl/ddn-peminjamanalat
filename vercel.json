@@ -12,11 +12,11 @@
             "destination": "/assets/$1"
         },
         {
-            "source": "/(admin|peminjam|petugas)/(.*)",
-            "destination": "/api/index.php"
+            "source": "/api/(.*)",
+            "destination": "/api/$1"
         },
         {
-            "source": "/(.*)",
+            "source": "/((?!assets|api).*)",
             "destination": "/api/index.php"
         }
     ]
